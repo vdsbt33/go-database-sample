@@ -14,28 +14,31 @@ type Person struct {
 	updatedAt sql.NullTime
 }
 
-func getAll() []Person {
-	// Connect to the database
-	//
+func getConnection() *sql.DB {
 	connStr := "user=your_user password=your_password dbname=database_name" // Change this to your database
 	db, err := sql.Open("postgres", connStr)
 
-	// Check if it connected propertly
-	//
 	if err != nil {
 		log.Fatal(err)
-		return []Person {}
+	}
+
+	return db
+}
+
+func getAll(db *sql.DB) []Person {
+	if db == nil {
+		return nil
 	}
 
 	// Searches for data in the database
 	//
 	queryString := `SELECT id, name, email, "createdAt", "updatedAt" FROM "Person"`
 	rows, err := db.Query(queryString)
+	defer rows.Close()
 
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer rows.Close()
 
 	var result []Person
 
@@ -61,6 +64,8 @@ func getAll() []Person {
 }
 
 func main() {
-	var personList []Person = getAll()
+	var connection = getConnection();
+
+	var personList []Person = getAll(connection)
 	log.Printf("%+v\n", personList)
 }
