@@ -15,8 +15,7 @@ type Person struct {
 }
 
 func getConnection() *sql.DB {
-	//connStr := "user=your_user password=your_password dbname=database_name" // Change this to your database
-	connStr := "user=postgres password=123456 dbname=learning"
+	connStr := "user=your_user password=your_password dbname=database_name" // Change this to your database
 	db, err := sql.Open("postgres", connStr)
 
 	if err != nil {
