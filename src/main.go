@@ -7,15 +7,16 @@ import (
 )
 
 type Person struct {
-	id string
-	name string
-	email string
-	createdAt sql.NullTime
-	updatedAt sql.NullTime
+	Id string
+	Name string
+	Email string
+	CreatedAt sql.NullTime
+	UpdatedAt sql.NullTime
 }
 
 func getConnection() *sql.DB {
-	connStr := "user=your_user password=your_password dbname=database_name" // Change this to your database
+	//connStr := "user=your_user password=your_password dbname=database_name" // Change this to your database
+	connStr := "user=postgres password=123456 dbname=learning"
 	db, err := sql.Open("postgres", connStr)
 
 	if err != nil {
@@ -49,11 +50,11 @@ func getAll(db *sql.DB) []Person {
 		var person Person
 
 		if err := rows.Scan(
-			&person.id,
-			&person.name,
-			&person.email,
-			&person.createdAt,
-			&person.updatedAt); err != nil {
+			&person.Id,
+			&person.Name,
+			&person.Email,
+			&person.CreatedAt,
+			&person.UpdatedAt); err != nil {
 				log.Fatal(err)
 			}
 
