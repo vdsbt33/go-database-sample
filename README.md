@@ -8,7 +8,7 @@ This is a minimalistic sample on connecting to a Postgres database using Go prog
 
 ## How to run
 
-- Install dependencies by running `go get database/sql github.com/lib/pq`
+- Install dependencies by running `go get ./src`
 - Prepare your database
    - Create the sample table
    ```
