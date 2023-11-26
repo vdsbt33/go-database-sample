@@ -7,9 +7,9 @@ import (
 )
 
 type Person struct {
-	Id string
-	Name string
-	Email string
+	Id        string
+	Name      string
+	Email     string
 	CreatedAt sql.NullTime
 	UpdatedAt sql.NullTime
 }
